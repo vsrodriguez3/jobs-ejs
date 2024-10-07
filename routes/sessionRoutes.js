@@ -9,20 +9,21 @@ const {
   logoff,
 } = require("../controllers/sessionController");
 
+
 router.route("/register").get(registerShow).post(registerDo);
 router
   .route("/logon")
   .get(logonShow)
   .post(
     passport.authenticate("local", {
-      successRedirect: "/",
+      successRedirect: "/jobs",
       failureRedirect: "/sessions/logon",
       failureFlash: true,
     }),
-    // (req, res) => {
-    //   res.send("Not yet implemented.");
-    // }
   );
 router.route("/logoff").post(logoff);
 
+
 module.exports = router;
+
+

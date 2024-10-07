@@ -1,15 +1,30 @@
-<%- include("partials/head.ejs") %> <%- include("partials/header.ejs") %>
-<form method="POST">
+<%- include("partials/head.ejs") %> 
+<%- include("partials/header.ejs") %>
+
+<% if (errors && errors.length > 0) { %>
+  <!-- <div class="error"> -->
+    <% errors.forEach(function(error) { %>
+      <p><%= error %></p>
+    <% }) %>
+  <!-- </div> -->
+<% } %>
+
+<!-- <% for (let i=0; i<errors.length; i++) { %> 
+    <li><%= errors[i] %></li>
+<% } %> -->
+
+<form method="POST" action="/sessions/logon">
+  <input type="hidden" name="_csrf" value="<%= _csrf %>" />
   <div>
     <label name="email">Enter your email:</label>
-    <input name="email" />
+    <input name="email" required />
   </div>
   <div>
     <label name="password">Enter your password:</label>
-    <input type="password" name="password" />
+    <input type="password" name="password" required />
   </div>
   <div>
-    <button>Logon</button>
+    <button type="submit">Logon</button>
     <a href="/">
       <button type="button">Cancel</button>
     </a>
